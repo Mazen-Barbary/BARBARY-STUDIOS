@@ -2,10 +2,9 @@
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>BARBARY | Web Development Redefined</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -100,10 +99,16 @@
             padding: 0;
         }
         .cinematic-frame {
-            border: 24px solid #131313;
+            border: 12px solid #131313;
+        }
+        @media (min-width: 768px) {
+            .cinematic-frame { border-width: 24px; }
         }
         .brutal-shadow {
-            box-shadow: 8px 8px 0px 0px #ff571a;
+            box-shadow: 4px 4px 0px 0px #ff571a;
+        }
+        @media (min-width: 768px) {
+            .brutal-shadow { box-shadow: 8px 8px 0px 0px #ff571a; }
         }
         .brutal-shadow-hover:hover {
             transform: translate(-4px, -4px);
@@ -115,124 +120,154 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        /* Mobile nav menu */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        #mobile-menu.open {
+            max-height: 300px;
+        }
+        html {
+            overflow-x: hidden;
+        }
+        body {
+            overflow-x: hidden;
+        }
     </style>
     <link rel="icon" type="image/ico" href="images/favicon.ico"/>
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden">
 <!-- TopNavBar -->
-<nav class="docked full-width top-0 bg-background dark:bg-background border-b-4 border-on-background dark:border-on-background flex justify-between items-center w-full px-frame-border py-6 max-w-container-max mx-auto z-50 sticky">
-<div class="font-display-xl text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter text-on-background dark:text-on-background">
+<nav class="docked full-width top-0 bg-background dark:bg-background border-b-4 border-on-background dark:border-on-background w-full px-4 sm:px-6 md:px-frame-border py-4 md:py-6 max-w-container-max mx-auto z-50 sticky">
+<div class="flex justify-between items-center">
+<div class="font-display-xl text-2xl sm:text-3xl md:text-headline-lg-mobile lg:text-headline-lg uppercase tracking-tighter text-on-background dark:text-on-background">
             BARBARY
         </div>
-<div class="hidden md:flex gap-gutter">
+<div class="hidden md:flex gap-gutter items-center">
 <a class="text-on-background dark:text-on-background font-medium hover:text-primary transition-colors duration-200" href="index.html">Work</a>
 <a class="text-primary font-bold border-b-4 border-primary pb-1 transition-all" href="#">Services</a>
-
 <a class="text-on-background dark:text-on-background font-medium hover:text-primary transition-colors duration-200" href="#">About</a>
-
-</div>
 <button class="bg-primary-container text-on-primary-container font-label-mono px-6 py-3 uppercase font-bold active:translate-y-1 transition-all border-2 border-primary-container hover:bg-transparent hover:text-primary-container">
             Start Project
         </button>
+</div>
+<!-- Hamburger toggle, mobile/tablet only -->
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" class="md:hidden flex items-center justify-center w-11 h-11 border-2 border-on-background text-on-background" id="menu-toggle">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
+</button>
+</div>
+<!-- Mobile menu panel -->
+<div class="md:hidden" id="mobile-menu">
+<div class="flex flex-col gap-4 pt-6 pb-2">
+<a class="text-on-background dark:text-on-background font-medium hover:text-primary transition-colors duration-200" href="index.html">Work</a>
+<a class="text-primary font-bold" href="#">Services</a>
+<a class="text-on-background dark:text-on-background font-medium hover:text-primary transition-colors duration-200" href="#">About</a>
+<button class="bg-primary-container text-on-primary-container font-label-mono px-6 py-3 uppercase font-bold active:translate-y-1 transition-all border-2 border-primary-container hover:bg-transparent hover:text-primary-container w-full">
+            Start Project
+        </button>
+</div>
+</div>
 </nav>
 <main class="cinematic-frame min-h-screen">
 <!-- Hero Section -->
-<section class="relative px-gutter pt-32 pb-section-gap max-w-container-max mx-auto">
-<div class="border-8 border-primary-container p-gutter md:p-24 relative overflow-hidden">
+<section class="relative px-4 sm:px-6 md:px-gutter pt-16 sm:pt-24 md:pt-32 pb-20 sm:pb-32 md:pb-section-gap max-w-container-max mx-auto">
+<div class="border-4 md:border-8 border-primary-container p-6 sm:p-10 md:p-24 relative overflow-hidden">
 <div class="absolute inset-0 liquid-bg -z-10"></div>
-<div class="flex flex-col md:flex-row justify-between items-end gap-gutter">
-<h1 class="font-display-xl text-display-xl max-w-4xl">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-gutter">
+<h1 class="font-display-xl text-4xl sm:text-6xl md:text-8xl lg:text-display-xl leading-[1.05] md:leading-[0.95] lg:leading-[110px] max-w-4xl break-words">
                         OUR <span class="text-primary-container">CAPABILITIES</span>
 </h1>
-<div class="font-label-mono text-primary-container uppercase max-w-xs mb-4">
+<div class="font-label-mono text-xs sm:text-sm text-primary-container uppercase max-w-xs">
                         [ TECHNICAL SPECIFICATION V.4.0 ] <br/> HIGH-FIDELITY DIGITAL EXECUTION FOR THE BOLD.
                     </div>
 </div>
 </div>
-<!-- Mascot Floating -->
-<div class="absolute -bottom-16 right-gutter z-20 w-48 md:w-80 transition-transform duration-500 hover:rotate-12">
+<!-- Mascot: inline flow on small screens, floating/absolute from md up -->
+<div class="flex justify-center mt-8 md:mt-0 md:absolute md:-bottom-16 md:right-gutter md:justify-end z-20 w-32 sm:w-40 md:w-64 lg:w-80 mx-auto md:mx-0 transition-transform duration-500 hover:rotate-12">
 <img alt="Skating Dinosaur Mascot" class="w-full" src="images/dinooo.png"/>
 </div>
 </section>
 <!-- Services Grid -->
-<section class="px-gutter pb-section-gap max-w-container-max mx-auto">
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<section class="px-4 sm:px-6 md:px-gutter pb-20 sm:pb-32 md:pb-section-gap max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-gutter">
 <!-- Card 1 -->
-<div class="group border-4 border-on-background p-10 flex flex-col justify-between min-h-[500px] transition-all duration-300 brutal-shadow hover:-translate-y-2">
+<div class="group border-4 border-on-background p-6 sm:p-8 md:p-10 flex flex-col justify-between min-h-[380px] sm:min-h-[420px] md:min-h-[500px] transition-all duration-300 brutal-shadow hover:-translate-y-2">
 <div>
-<div class="flex justify-between items-start mb-8">
-<span class="font-label-mono text-primary-container text-xl">[ 01 ]</span>
-<span class="material-symbols-outlined text-4xl">design_services</span>
+<div class="flex justify-between items-start mb-6 md:mb-8">
+<span class="font-label-mono text-primary-container text-lg md:text-xl">[ 01 ]</span>
+<span class="material-symbols-outlined text-3xl md:text-4xl">design_services</span>
 </div>
-<h2 class="font-headline-lg text-headline-lg mb-6 leading-tight">Web <br/>Design</h2>
-<p class="font-body-md text-on-surface-variant max-w-xs">
+<h2 class="font-headline-lg text-3xl sm:text-4xl md:text-headline-lg mb-4 md:mb-6 leading-tight">Web <br/>Design</h2>
+<p class="font-body-md text-sm sm:text-base text-on-surface-variant max-w-xs">
                             Cinematic aesthetics blended with brutalist structure. We create digital interfaces that command attention and refuse to compromise on visual impact.
                         </p>
 </div>
-<div class="mt-8 border-t-2 border-surface-variant pt-6">
-<ul class="font-label-mono space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> UI/UX FRAMEWORKS</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> ART DIRECTION</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> INTERACTIVE PROTOTYPING</li>
+<div class="mt-6 md:mt-8 border-t-2 border-surface-variant pt-4 md:pt-6">
+<ul class="font-label-mono text-xs sm:text-sm space-y-2">
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> UI/UX FRAMEWORKS</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> ART DIRECTION</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> INTERACTIVE PROTOTYPING</li>
 </ul>
 </div>
 </div>
 <!-- Card 2 -->
-<div class="group border-4 border-on-background p-10 flex flex-col justify-between min-h-[500px] transition-all duration-300 bg-on-background text-background brutal-shadow-hover">
+<div class="group border-4 border-on-background p-6 sm:p-8 md:p-10 flex flex-col justify-between min-h-[380px] sm:min-h-[420px] md:min-h-[500px] transition-all duration-300 bg-on-background text-background brutal-shadow-hover">
 <div>
-<div class="flex justify-between items-start mb-8">
-<span class="font-label-mono text-primary-container text-xl">[ 02 ]</span>
-<span class="material-symbols-outlined text-4xl">terminal</span>
+<div class="flex justify-between items-start mb-6 md:mb-8">
+<span class="font-label-mono text-primary-container text-lg md:text-xl">[ 02 ]</span>
+<span class="material-symbols-outlined text-3xl md:text-4xl">terminal</span>
 </div>
-<h2 class="font-headline-lg text-headline-lg mb-6 leading-tight">Backend <br/>Dev</h2>
-<p class="font-body-md text-surface-container-highest max-w-xs">
+<h2 class="font-headline-lg text-3xl sm:text-4xl md:text-headline-lg mb-4 md:mb-6 leading-tight">Backend <br/>Dev</h2>
+<p class="font-body-md text-sm sm:text-base text-surface-container-highest max-w-xs">
                             Unseen power. We build the architectural foundation that supports massive scale and complex logic, ensuring your engine runs as smooth as it looks.
                         </p>
 </div>
-<div class="mt-8 border-t-2 border-surface-dim pt-6">
-<ul class="font-label-mono space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> SYSTEM ARCHITECTURE</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> API DEVELOPMENT</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> CLOUD INFRASTRUCTURE</li>
+<div class="mt-6 md:mt-8 border-t-2 border-surface-dim pt-4 md:pt-6">
+<ul class="font-label-mono text-xs sm:text-sm space-y-2">
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> SYSTEM ARCHITECTURE</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> API DEVELOPMENT</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> CLOUD INFRASTRUCTURE</li>
 </ul>
 </div>
 </div>
 <!-- Card 3 -->
-<div class="group border-4 border-primary-container p-10 flex flex-col justify-between min-h-[500px] transition-all duration-300 brutal-shadow hover:-translate-y-2">
+<div class="group border-4 border-primary-container p-6 sm:p-8 md:p-10 flex flex-col justify-between min-h-[380px] sm:min-h-[420px] md:min-h-[500px] transition-all duration-300 brutal-shadow hover:-translate-y-2">
 <div>
-<div class="flex justify-between items-start mb-8">
-<span class="font-label-mono text-primary-container text-xl">[ 03 ]</span>
-<span class="material-symbols-outlined text-4xl">layers</span>
+<div class="flex justify-between items-start mb-6 md:mb-8">
+<span class="font-label-mono text-primary-container text-lg md:text-xl">[ 03 ]</span>
+<span class="material-symbols-outlined text-3xl md:text-4xl">layers</span>
 </div>
-<h2 class="font-headline-lg text-headline-lg mb-6 leading-tight">Full <br/>Stack</h2>
-<p class="font-body-md text-on-surface-variant max-w-xs">
+<h2 class="font-headline-lg text-3xl sm:text-4xl md:text-headline-lg mb-4 md:mb-6 leading-tight">Full <br/>Stack</h2>
+<p class="font-body-md text-sm sm:text-base text-on-surface-variant max-w-xs">
                             The complete loop. End-to-end integration where design and technical execution exist in perfect, high-contrast harmony.
                         </p>
 </div>
-<div class="mt-8 border-t-2 border-surface-variant pt-6">
-<ul class="font-label-mono space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> NEXT.JS ECOSYSTEMS</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> WEBGL &amp; SHADERS</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container"></span> CUSTOM CMS DEPLOYMENT</li>
+<div class="mt-6 md:mt-8 border-t-2 border-surface-variant pt-4 md:pt-6">
+<ul class="font-label-mono text-xs sm:text-sm space-y-2">
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> NEXT.JS ECOSYSTEMS</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> WEBGL &amp; SHADERS</li>
+<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary-container flex-shrink-0"></span> CUSTOM CMS DEPLOYMENT</li>
 </ul>
 </div>
 </div>
 </div>
 </section>
 <!-- CTA Section -->
-<section class="px-gutter pb-section-gap max-w-container-max mx-auto">
-<div class="bg-primary-container p-gutter md:p-32 text-on-primary-container flex flex-col items-center text-center">
-<h3 class="font-display-xl text-display-xl uppercase mb-12">
+<section class="px-4 sm:px-6 md:px-gutter pb-20 sm:pb-32 md:pb-section-gap max-w-container-max mx-auto">
+<div class="bg-primary-container p-6 sm:p-12 md:p-32 text-on-primary-container flex flex-col items-center text-center">
+<h3 class="font-display-xl text-3xl sm:text-5xl md:text-7xl lg:text-display-xl uppercase mb-8 md:mb-12 break-words">
                     READY TO START?
                 </h3>
-<p class="font-headline-lg text-headline-lg-mobile md:text-headline-lg-mobile max-w-2xl mb-12 uppercase">
+<p class="font-headline-lg text-lg sm:text-2xl md:text-4xl lg:text-headline-lg-mobile max-w-2xl mb-8 md:mb-12 uppercase">
                     Your vision requires an aggressive technical partner. Let's build the future.
                 </p>
-<div class="flex flex-col md:flex-row gap-8">
-<button class="bg-on-primary-container text-primary-container px-12 py-6 font-display-xl text-2xl uppercase hover:bg-background hover:text-primary-container transition-all border-4 border-on-primary-container">
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 w-full sm:w-auto">
+<button class="bg-on-primary-container text-primary-container px-6 sm:px-12 py-4 sm:py-6 font-display-xl text-base sm:text-xl md:text-2xl uppercase hover:bg-background hover:text-primary-container transition-all border-4 border-on-primary-container">
                         Launch Brief
                     </button>
-<button class="bg-transparent text-on-primary-container px-12 py-6 font-display-xl text-2xl uppercase border-4 border-on-primary-container hover:bg-on-primary-container hover:text-primary-container transition-all">
+<button class="bg-transparent text-on-primary-container px-6 sm:px-12 py-4 sm:py-6 font-display-xl text-base sm:text-xl md:text-2xl uppercase border-4 border-on-primary-container hover:bg-on-primary-container hover:text-primary-container transition-all">
                         Contact Studio
                     </button>
 </div>
@@ -240,19 +275,18 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full px-frame-border py-gutter flex flex-col md:flex-row justify-between items-end gap-gutter bg-surface-container dark:bg-surface-container border-t-8 border-on-background dark:border-on-background">
+<footer class="w-full px-4 sm:px-6 md:px-frame-border py-8 md:py-gutter flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-gutter bg-surface-container dark:bg-surface-container border-t-4 md:border-t-8 border-on-background dark:border-on-background">
 <div class="flex flex-col gap-4">
-<div class="font-display-xl text-headline-lg text-on-surface uppercase tracking-tighter">
+<div class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg text-on-surface uppercase tracking-tighter">
                 BARBARY
             </div>
-<p class="font-label-mono text-label-mono text-secondary-fixed dark:text-secondary-fixed">
+<p class="font-label-mono text-xs sm:text-label-mono text-secondary-fixed dark:text-secondary-fixed">
                 © 2026 BARBARY STUDIO. ALL RIGHTS RESERVED.
             </p>
 </div>
-<div class="flex gap-gutter font-label-mono text-label-mono">
-<a target = "_blank"class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.instagram.com/mazen_khaled1907/">Instagram</a>
-<a target = "_blank" class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.linkedin.com/in/mazen-khaled-766520425/">LinkedIn</a>
-
+<div class="flex flex-wrap gap-4 sm:gap-gutter font-label-mono text-xs sm:text-label-mono">
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors uppercase tracking-widest transition-all" href="https://www.instagram.com/mazen_khaled1907/" target="_blank">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors uppercase tracking-widest transition-all" href="https://www.linkedin.com/in/mazen-khaled-766520425/" target="_blank">LinkedIn</a>
 <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed underline transition-all active:scale-95 duration-100" href="#">Contact</a>
 </div>
 </footer>
@@ -279,6 +313,24 @@
                 nav.classList.add('shadow-xl');
             }
             lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuIcon.textContent = 'menu';
+            });
         });
     </script>
 </body></html>
