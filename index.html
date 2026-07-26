@@ -2,7 +2,7 @@
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>BARBARY | Web Development Redefined</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -96,6 +96,7 @@
 <style>
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -106,7 +107,10 @@
 
         /* The Frame System */
         .frame-window {
-            border: 8px solid #ffb59e;
+            border: 4px solid #ffb59e;
+        }
+        @media (min-width: 768px) {
+            .frame-window { border-width: 8px; }
         }
 
         @keyframes skate-slide {
@@ -136,8 +140,11 @@
         }
 
         .brutal-border {
-            border-width: 4px;
+            border-width: 2px;
             border-style: solid;
+        }
+        @media (min-width: 768px) {
+            .brutal-border { border-width: 4px; }
         }
 
         .custom-cursor {
@@ -150,6 +157,16 @@
             mix-blend-mode: difference;
             transition: transform 0.1s ease;
         }
+
+        /* Mobile nav menu */
+        #mobile-nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        #mobile-nav.open {
+            max-height: 320px;
+        }
     </style>
     <link rel="icon" type="image/ico" href="images/favicon.ico"/>
 </head>
@@ -157,75 +174,89 @@
 <div class="custom-cursor hidden md:block" id="cursor"></div>
 <!-- Section 1: Hero Shell & Navigation -->
 <header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b-4 border-primary dark:border-primary">
-<div class="flex justify-between items-center w-full px-frame-border py-6 mx-auto">
-<div class="font-display-xl text-headline-lg text-primary dark:text-primary tracking-tighter">BARBARY</div>
-<nav class="hidden md:flex gap-12 font-label-mono text-label-mono uppercase">
+<div class="flex justify-between items-center w-full px-4 sm:px-6 md:px-frame-border py-4 md:py-6 mx-auto">
+<div class="font-display-xl text-2xl sm:text-3xl md:text-headline-lg text-primary dark:text-primary tracking-tighter">BARBARY</div>
+<nav class="hidden md:flex gap-12 font-label-mono text-label-mono uppercase items-center">
 <a class="text-primary dark:text-primary font-bold border-b-2 border-primary translate-y-1 transition-transform" href="#">Work</a>
 <a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="services.html">Services</a>
-
 <a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="#">about</a>
-</nav>
 <a class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase hover:bg-on-primary hover:text-primary transition-all brutal-border border-primary inline-block" href="#site-footer">
                 Get in Touch
             </a>
+</nav>
+<!-- Hamburger toggle, mobile/tablet only -->
+<button aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle menu" class="md:hidden flex items-center justify-center w-11 h-11 border-2 border-primary text-primary flex-shrink-0" id="nav-toggle">
+<span class="material-symbols-outlined" id="nav-icon">menu</span>
+</button>
+</div>
+<!-- Mobile menu panel -->
+<div class="md:hidden px-4 sm:px-6" id="mobile-nav">
+<div class="flex flex-col gap-4 pt-2 pb-6 font-label-mono text-label-mono uppercase">
+<a class="text-primary dark:text-primary font-bold" href="#">Work</a>
+<a class="text-on-surface dark:text-on-surface" href="services.html">Services</a>
+<a class="text-on-surface dark:text-on-surface" href="#">about</a>
+<a class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase hover:bg-on-primary hover:text-primary transition-all brutal-border border-primary inline-block text-center" href="#site-footer">
+                Get in Touch
+            </a>
+</div>
 </div>
 </header>
-<main class="mt-[100px]">
+<main class="mt-[76px] md:mt-[100px]">
 <!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden frame-window m-6 bg-surface-container-lowest">
+<section class="relative h-[85vh] sm:h-screen flex items-center justify-center overflow-hidden frame-window m-3 sm:m-4 md:m-6 bg-surface-container-lowest">
 
 <div class="z-10 text-center px-4">
-<h1 class="font-display-xl text-[10vw] md:text-display-xl leading-none text-primary mix-blend-difference mb-8">
+<h1 class="font-display-xl text-[12vw] sm:text-[11vw] md:text-display-xl leading-none text-primary mix-blend-difference mb-8">
                     CRAFTED FOR <br/>THE BOLD
                 </h1>
-<div class="skate-animation absolute bottom-12 left-0 w-full pointer-events-none">
-<img alt="Colorful Skating Dinosaur" class="w-64 md:w-96" src="images/dinooo.png"/>
+<div class="skate-animation absolute bottom-8 sm:bottom-12 left-0 w-full pointer-events-none">
+<img alt="Colorful Skating Dinosaur" class="w-36 sm:w-64 md:w-96" src="images/dinooo.png"/>
 </div>
 </div>
-<div class="absolute bottom-8 right-8 flex flex-col items-end gap-2 text-primary font-label-mono">
-<span class="text-label-mono uppercase tracking-[0.2em]">Scroll to Explore</span>
+<div class="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 flex flex-col items-end gap-2 text-primary font-label-mono">
+<span class="hidden sm:block text-label-mono uppercase tracking-[0.2em]">Scroll to Explore</span>
 <span class="material-symbols-outlined animate-bounce">arrow_downward</span>
 </div>
 </section>
 <!-- Section 2: Introduction -->
-<section class="px-frame-border py-section-gap max-w-container-max mx-auto">
-<div class="grid md:grid-cols-2 gap-gutter items-center">
+<section class="px-4 sm:px-6 md:px-frame-border py-16 sm:py-24 md:py-section-gap max-w-container-max mx-auto">
+<div class="grid md:grid-cols-2 gap-8 md:gap-gutter items-center">
 <div class="relative group">
 <div class="absolute inset-0 bg-primary opacity-10 group-hover:opacity-20 transition-opacity"></div>
-<img alt="Barbary Logo Large" class="w-full brutal-border border-primary-fixed-dim p-12" src="images/image.png"/>
+<img alt="Barbary Logo Large" class="w-full brutal-border border-primary-fixed-dim p-6 sm:p-8 md:p-12" src="images/image.png"/>
 </div>
 <div class="md:pl-12">
 <span class="font-label-mono text-primary text-label-mono uppercase mb-4 block">// Introduction</span>
-<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-background mb-8">
+<h2 class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg-mobile lg:text-headline-lg text-on-background mb-6 md:mb-8">
                         Web Development Redefined.
                     </h2>
-<p class="font-body-md text-on-surface-variant text-xl leading-relaxed max-w-xl">
+<p class="font-body-md text-on-surface-variant text-base sm:text-lg md:text-xl leading-relaxed max-w-xl">
                         We don't build websites; we engineer digital spectacles. BARBARY is a boutique studio where high-performance engineering meets cinematic design. We thrive on the absurd and build for the iconic.
                     </p>
 </div>
 </div>
 </section>
 <!-- Section 3: Services -->
-<section class="bg-primary text-on-primary py-section-gap">
-<div class="max-w-container-max mx-auto px-frame-border">
-<div class="mb-24">
-<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg uppercase text-on-primary">Our Arsenal</h2>
+<section class="bg-primary text-on-primary py-16 sm:py-24 md:py-section-gap">
+<div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-frame-border">
+<div class="mb-12 md:mb-24">
+<h2 class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg-mobile lg:text-headline-lg uppercase text-on-primary">Our Arsenal</h2>
 </div>
 <div class="grid md:grid-cols-3 divide-y-4 md:divide-y-0 md:divide-x-4 divide-on-primary-container">
-<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
-<span class="font-label-mono text-label-mono mb-6 block">01 / TECH</span>
-<h3 class="font-display-xl text-4xl mb-6">Engineering</h3>
-<p class="font-body-md">Hardcore frontend performance, scalable backend architectures, and WebGL wizardry that moves at 120fps.</p>
+<div class="py-8 sm:py-10 md:py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-4 md:mb-6 block">01 / TECH</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4 md:mb-6">Engineering</h3>
+<p class="font-body-md text-sm sm:text-base">Hardcore frontend performance, scalable backend architectures, and WebGL wizardry that moves at 120fps.</p>
 </div>
-<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
-<span class="font-label-mono text-label-mono mb-6 block">02 / VISUALS</span>
-<h3 class="font-display-xl text-4xl mb-6">Design</h3>
-<p class="font-body-md">Cinematic layouts that break the grid. High-contrast typography and a commitment to brutalist elegance.</p>
+<div class="py-8 sm:py-10 md:py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-4 md:mb-6 block">02 / VISUALS</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4 md:mb-6">Design</h3>
+<p class="font-body-md text-sm sm:text-base">Cinematic layouts that break the grid. High-contrast typography and a commitment to brutalist elegance.</p>
 </div>
-<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
-<span class="font-label-mono text-label-mono mb-6 block">03 / CORE</span>
-<h3 class="font-display-xl text-4xl mb-6">Strategy</h3>
-<p class="font-body-md">Positioning brands as market leaders through technical dominance and undeniable visual storytelling.</p>
+<div class="py-8 sm:py-10 md:py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-4 md:mb-6 block">03 / CORE</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4 md:mb-6">Strategy</h3>
+<p class="font-body-md text-sm sm:text-base">Positioning brands as market leaders through technical dominance and undeniable visual storytelling.</p>
 </div>
 </div>
 </div>
@@ -233,90 +264,90 @@
 <!-- Section 4: Featured Work -->
 
 <!-- Section 5: The Method -->
-<section class="bg-surface-container-lowest py-section-gap border-y-8 border-primary">
-<div class="max-w-container-max mx-auto px-frame-border">
-<div class="grid md:grid-cols-12 gap-gutter">
+<section class="bg-surface-container-lowest py-16 sm:py-24 md:py-section-gap border-y-4 md:border-y-8 border-primary">
+<div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-frame-border">
+<div class="grid md:grid-cols-12 gap-8 md:gap-gutter">
 <div class="md:col-span-4">
-<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-primary sticky top-32">The Method.</h2>
+<h2 class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg-mobile lg:text-headline-lg text-primary md:sticky md:top-32">The Method.</h2>
 </div>
-<div class="md:col-span-8 space-y-24">
-<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
-<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">01</span>
-<h3 class="font-display-xl text-4xl mb-4">Deep Extraction</h3>
-<p class="font-body-md text-xl">We dive into your brand's DNA to pull out the most compelling, high-contrast narratives that set you apart from the sea of generic tech.</p>
+<div class="md:col-span-8 space-y-8 md:space-y-24">
+<div class="brutal-border border-primary-fixed-dim p-6 sm:p-8 md:p-12 bg-surface">
+<span class="font-display-xl text-5xl sm:text-6xl md:text-8xl text-primary-container mb-4 md:mb-8 block opacity-50">01</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4">Deep Extraction</h3>
+<p class="font-body-md text-base sm:text-lg md:text-xl">We dive into your brand's DNA to pull out the most compelling, high-contrast narratives that set you apart from the sea of generic tech.</p>
 </div>
-<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
-<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">02</span>
-<h3 class="font-display-xl text-4xl mb-4">Technical Blueprint</h3>
-<p class="font-body-md text-xl">Every pixel is mapped to performance. We define the stack, the motion logic, and the structural frame of the experience.</p>
+<div class="brutal-border border-primary-fixed-dim p-6 sm:p-8 md:p-12 bg-surface">
+<span class="font-display-xl text-5xl sm:text-6xl md:text-8xl text-primary-container mb-4 md:mb-8 block opacity-50">02</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4">Technical Blueprint</h3>
+<p class="font-body-md text-base sm:text-lg md:text-xl">Every pixel is mapped to performance. We define the stack, the motion logic, and the structural frame of the experience.</p>
 </div>
-<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
-<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">03</span>
-<h3 class="font-display-xl text-4xl mb-4">Brutal Execution</h3>
-<p class="font-body-md text-xl">Coding with precision and designing with audacity. We build until it feels both permanent and cutting-edge.</p>
+<div class="brutal-border border-primary-fixed-dim p-6 sm:p-8 md:p-12 bg-surface">
+<span class="font-display-xl text-5xl sm:text-6xl md:text-8xl text-primary-container mb-4 md:mb-8 block opacity-50">03</span>
+<h3 class="font-display-xl text-2xl sm:text-3xl md:text-4xl mb-4">Brutal Execution</h3>
+<p class="font-body-md text-base sm:text-lg md:text-xl">Coding with precision and designing with audacity. We build until it feels both permanent and cutting-edge.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
 <!-- Section 6: Culture -->
-<section class="py-section-gap overflow-hidden relative">
-<div class="max-w-container-max mx-auto px-frame-border flex flex-col items-center text-center">
-<div class="mb-12">
-<img alt="Colorful Skating Dinosaur" class="w-48 mx-auto hover:rotate-12 transition-transform cursor-pointer" src="images/dinooo.png"/>
+<section class="py-16 sm:py-24 md:py-section-gap overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-frame-border flex flex-col items-center text-center">
+<div class="mb-8 md:mb-12">
+<img alt="Colorful Skating Dinosaur" class="w-32 sm:w-40 md:w-48 mx-auto hover:rotate-12 transition-transform cursor-pointer" src="images/dinooo.png"/>
 </div>
-<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg mb-12 max-w-4xl">
+<h2 class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg-mobile lg:text-headline-lg mb-8 md:mb-12 max-w-4xl">
                     Absurdly Bold. <br/>Technically Superior.
                 </h2>
-<div class="grid md:grid-cols-2 gap-gutter text-left border-t-4 border-on-surface pt-12">
-<p class="font-body-md text-xl leading-relaxed">
+<div class="grid md:grid-cols-2 gap-6 md:gap-gutter text-left border-t-4 border-on-surface pt-8 md:pt-12">
+<p class="font-body-md text-base sm:text-lg md:text-xl leading-relaxed">
                         We believe the middle ground is a death sentence for brands. In an age of algorithmic aesthetics, we choose the outlier path. Our studio is built on the philosophy that a skating dinosaur mascot is more memorable than a generic blue logo.
                     </p>
-<p class="font-body-md text-xl leading-relaxed">
+<p class="font-body-md text-base sm:text-lg md:text-xl leading-relaxed">
                         Professionalism doesn't mean boring. It means delivering a product so robust and technically advanced that it can afford to be irreverent. We play loud, we code hard, and we never compromise on the frame.
                     </p>
 </div>
 </div>
 </section>
 <!-- Section 7: Testimonials -->
-<section class="py-section-gap bg-secondary-container text-on-secondary-container border-y-8 border-on-secondary-container">
-<div class="marquee py-12">
-<div class="marquee-content flex gap-32">
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
+<section class="py-12 sm:py-16 md:py-section-gap bg-secondary-container text-on-secondary-container border-y-4 md:border-y-8 border-on-secondary-container">
+<div class="marquee py-6 sm:py-8 md:py-12">
+<div class="marquee-content flex gap-12 sm:gap-20 md:gap-32">
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
 <!-- Duplicate for infinite loop -->
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
-<p class="font-display-xl text-6xl md:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
+<p class="font-display-xl text-2xl sm:text-4xl md:text-6xl lg:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
 </div>
 </div>
 </section>
 <!-- CTA Section -->
-<section class="px-frame-border py-section-gap bg-primary text-on-primary">
-<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-<h2 class="font-display-xl text-6xl md:text-9xl leading-none">READY FOR <br/>THE FRAME?</h2>
-<a class="bg-on-primary text-primary px-16 py-8 text-2xl font-display-xl uppercase brutal-border border-on-primary-fixed hover:bg-transparent hover:text-on-primary transition-all flex items-center gap-4 inline-flex" href="#site-footer">
+<section class="px-4 sm:px-6 md:px-frame-border py-16 sm:py-24 md:py-section-gap bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 text-center md:text-left">
+<h2 class="font-display-xl text-4xl sm:text-6xl md:text-7xl lg:text-9xl leading-none">READY FOR <br/>THE FRAME?</h2>
+<a class="bg-on-primary text-primary px-8 sm:px-12 md:px-16 py-5 sm:py-6 md:py-8 text-lg sm:text-xl md:text-2xl font-display-xl uppercase brutal-border border-on-primary-fixed hover:bg-transparent hover:text-on-primary transition-all flex items-center gap-4 inline-flex w-full sm:w-auto justify-center" href="#site-footer">
                     START PROJECT
-                    <span class="material-symbols-outlined text-4xl">north_east</span>
+                    <span class="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl">north_east</span>
 </a>
 </div>
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full bottom-0 bg-background dark:bg-background border-t-8 border-primary dark:border-primary" id="site-footer">
-<div class="flex flex-col md:flex-row justify-between items-center w-full px-frame-border py-section-gap max-w-container-max mx-auto">
-<div class="mb-12 md:mb-0">
-<div class="font-display-xl text-headline-lg-mobile text-primary mb-4">BARBARY</div>
-<p class="font-label-mono text-secondary dark:text-secondary max-w-xs">Built for those who refuse to blend in. We are the studio of the bold.</p>
+<footer class="w-full bottom-0 bg-background dark:bg-background border-t-4 md:border-t-8 border-primary dark:border-primary" id="site-footer">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-4 sm:px-6 md:px-frame-border py-12 sm:py-20 md:py-section-gap max-w-container-max mx-auto gap-10 md:gap-0">
+<div class="mb-0">
+<div class="font-display-xl text-3xl sm:text-4xl md:text-headline-lg-mobile text-primary mb-4">BARBARY</div>
+<p class="font-label-mono text-sm sm:text-label-mono text-secondary dark:text-secondary max-w-xs">Built for those who refuse to blend in. We are the studio of the bold.</p>
 </div>
-<div class="flex flex-col md:items-end gap-8">
-<div class="flex flex-wrap gap-8 font-label-mono text-label-mono">
-<a class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.instagram.com/mazen_khaled1907/" target="_blank">Instagram</a>
-<a class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.linkedin.com/in/mazen-khaled-766520425/" target="_blank">LinkedIn</a>
+<div class="flex flex-col md:items-end gap-6 md:gap-8">
+<div class="flex flex-wrap gap-6 sm:gap-8 font-label-mono text-sm sm:text-label-mono">
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors uppercase tracking-widest transition-all" href="https://www.instagram.com/mazen_khaled1907/" target="_blank">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors uppercase tracking-widest transition-all" href="https://www.linkedin.com/in/mazen-khaled-766520425/" target="_blank">LinkedIn</a>
 <a class="text-primary underline" href="#" target="_blank">Contact</a>
 </div>
-<div class="font-label-mono text-label-mono text-on-surface-variant">
+<div class="font-label-mono text-sm sm:text-label-mono text-on-surface-variant">
                     © 2026 BARBARY STUDIO. ALL RIGHTS RESERVED.
                 </div>
 </div>
@@ -355,6 +386,23 @@
         document.querySelectorAll('section > div').forEach(el => {
             el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-12');
             observer.observe(el);
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const navIcon = document.getElementById('nav-icon');
+        navToggle.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            navIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+        mobileNav.querySelectorAll('a').forEach(el => {
+            el.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navIcon.textContent = 'menu';
+            });
         });
     </script>
 </body></html>
