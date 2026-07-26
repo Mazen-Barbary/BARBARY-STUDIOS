@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BARBARY | Web Development Redefined</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb59e",
+                    "primary-container": "#ff571a",
+                    "on-primary-container": "#521300",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#002021",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#002a53",
+                    "tertiary-container": "#2492ff",
+                    "tertiary-fixed-dim": "#a5c8ff",
+                    "on-tertiary": "#00315e",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#ae3200",
+                    "secondary": "#e6feff",
+                    "primary": "#ffb59e",
+                    "on-secondary-fixed-variant": "#004f53",
+                    "surface-container-highest": "#353534",
+                    "secondary-container": "#00f4fe",
+                    "inverse-on-surface": "#313030",
+                    "inverse-surface": "#e5e2e1",
+                    "tertiary": "#a5c8ff",
+                    "on-secondary-container": "#006c71",
+                    "tertiary-fixed": "#d4e3ff",
+                    "surface-tint": "#ffb59e",
+                    "on-secondary": "#003739",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#004785",
+                    "secondary-fixed": "#63f7ff",
+                    "surface-bright": "#393939",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-dim": "#131313",
+                    "on-primary": "#5e1700",
+                    "on-error": "#690005",
+                    "on-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-surface-variant": "#e6beb2",
+                    "secondary-fixed-dim": "#00dce5",
+                    "primary-fixed": "#ffdbd0",
+                    "background": "#131313",
+                    "surface": "#131313",
+                    "outline-variant": "#5c4037",
+                    "surface-container-high": "#2a2a2a",
+                    "outline": "#ad897e",
+                    "on-primary-fixed-variant": "#852400",
+                    "on-primary-fixed": "#3a0b00",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed": "#001c3a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "4px",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "frame-border": "24px",
+                    "section-gap": "160px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Bricolage Grotesque"],
+                    "headline-lg-mobile": ["Bricolage Grotesque"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Bricolage Grotesque"],
+                    "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["40px", {"lineHeight": "44px", "fontWeight": "800"}],
+                    "body-md": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+
+        /* The Frame System */
+        .frame-window {
+            border: 8px solid #ffb59e;
+        }
+
+        @keyframes skate-slide {
+            0% { transform: translateX(-150%) rotate(-5deg); }
+            50% { transform: translateX(150%) rotate(5deg); }
+            100% { transform: translateX(-150%) rotate(-5deg); }
+        }
+
+        .skate-animation {
+            animation: skate-slide 18s linear infinite;
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee-scroll 40s linear infinite;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .brutal-border {
+            border-width: 4px;
+            border-style: solid;
+        }
+
+        .custom-cursor {
+            width: 24px;
+            height: 24px;
+            background: #ff571a;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+    </style>
+    <link rel="icon" type="image/ico" href="/web comp2/images./favicon (1).ico"/>
+</head>
+<body class="font-body-md selection:bg-primary selection:text-on-primary">
+<div class="custom-cursor hidden md:block" id="cursor"></div>
+<!-- Section 1: Hero Shell & Navigation -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b-4 border-primary dark:border-primary">
+<div class="flex justify-between items-center w-full px-frame-border py-6 mx-auto">
+<div class="font-display-xl text-headline-lg text-primary dark:text-primary tracking-tighter">BARBARY</div>
+<nav class="hidden md:flex gap-12 font-label-mono text-label-mono uppercase">
+<a class="text-primary dark:text-primary font-bold border-b-2 border-primary translate-y-1 transition-transform" href="#">Work</a>
+<a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="services.html">Services</a>
+
+<a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="#">about</a>
+</nav>
+<a class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase hover:bg-on-primary hover:text-primary transition-all brutal-border border-primary inline-block" href="#site-footer">
+                Get in Touch
+            </a>
+</div>
+</header>
+<main class="mt-[100px]">
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden frame-window m-6 bg-surface-container-lowest">
+
+<div class="z-10 text-center px-4">
+<h1 class="font-display-xl text-[10vw] md:text-display-xl leading-none text-primary mix-blend-difference mb-8">
+                    CRAFTED FOR <br/>THE BOLD
+                </h1>
+<div class="skate-animation absolute bottom-12 left-0 w-full pointer-events-none">
+<img alt="Colorful Skating Dinosaur" class="w-64 md:w-96" src="/web comp2/images./dinooo.png"/>
+</div>
+</div>
+<div class="absolute bottom-8 right-8 flex flex-col items-end gap-2 text-primary font-label-mono">
+<span class="text-label-mono uppercase tracking-[0.2em]">Scroll to Explore</span>
+<span class="material-symbols-outlined animate-bounce">arrow_downward</span>
+</div>
+</section>
+<!-- Section 2: Introduction -->
+<section class="px-frame-border py-section-gap max-w-container-max mx-auto">
+<div class="grid md:grid-cols-2 gap-gutter items-center">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<img alt="Barbary Logo Large" class="w-full brutal-border border-primary-fixed-dim p-12" src="/web comp2/images./image.png"/>
+</div>
+<div class="md:pl-12">
+<span class="font-label-mono text-primary text-label-mono uppercase mb-4 block">// Introduction</span>
+<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-on-background mb-8">
+                        Web Development Redefined.
+                    </h2>
+<p class="font-body-md text-on-surface-variant text-xl leading-relaxed max-w-xl">
+                        We don't build websites; we engineer digital spectacles. BARBARY is a boutique studio where high-performance engineering meets cinematic design. We thrive on the absurd and build for the iconic.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Section 3: Services -->
+<section class="bg-primary text-on-primary py-section-gap">
+<div class="max-w-container-max mx-auto px-frame-border">
+<div class="mb-24">
+<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg uppercase text-on-primary">Our Arsenal</h2>
+</div>
+<div class="grid md:grid-cols-3 divide-y-4 md:divide-y-0 md:divide-x-4 divide-on-primary-container">
+<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-6 block">01 / TECH</span>
+<h3 class="font-display-xl text-4xl mb-6">Engineering</h3>
+<p class="font-body-md">Hardcore frontend performance, scalable backend architectures, and WebGL wizardry that moves at 120fps.</p>
+</div>
+<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-6 block">02 / VISUALS</span>
+<h3 class="font-display-xl text-4xl mb-6">Design</h3>
+<p class="font-body-md">Cinematic layouts that break the grid. High-contrast typography and a commitment to brutalist elegance.</p>
+</div>
+<div class="py-12 md:px-12 group hover:bg-on-primary hover:text-primary transition-all">
+<span class="font-label-mono text-label-mono mb-6 block">03 / CORE</span>
+<h3 class="font-display-xl text-4xl mb-6">Strategy</h3>
+<p class="font-body-md">Positioning brands as market leaders through technical dominance and undeniable visual storytelling.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Featured Work -->
+
+<!-- Section 5: The Method -->
+<section class="bg-surface-container-lowest py-section-gap border-y-8 border-primary">
+<div class="max-w-container-max mx-auto px-frame-border">
+<div class="grid md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg text-primary sticky top-32">The Method.</h2>
+</div>
+<div class="md:col-span-8 space-y-24">
+<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
+<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">01</span>
+<h3 class="font-display-xl text-4xl mb-4">Deep Extraction</h3>
+<p class="font-body-md text-xl">We dive into your brand's DNA to pull out the most compelling, high-contrast narratives that set you apart from the sea of generic tech.</p>
+</div>
+<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
+<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">02</span>
+<h3 class="font-display-xl text-4xl mb-4">Technical Blueprint</h3>
+<p class="font-body-md text-xl">Every pixel is mapped to performance. We define the stack, the motion logic, and the structural frame of the experience.</p>
+</div>
+<div class="brutal-border border-primary-fixed-dim p-12 bg-surface">
+<span class="font-display-xl text-8xl text-primary-container mb-8 block opacity-50">03</span>
+<h3 class="font-display-xl text-4xl mb-4">Brutal Execution</h3>
+<p class="font-body-md text-xl">Coding with precision and designing with audacity. We build until it feels both permanent and cutting-edge.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Culture -->
+<section class="py-section-gap overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-frame-border flex flex-col items-center text-center">
+<div class="mb-12">
+<img alt="Colorful Skating Dinosaur" class="w-48 mx-auto hover:rotate-12 transition-transform cursor-pointer" src="/web comp2/images./dinooo.png"/>
+</div>
+<h2 class="font-display-xl text-headline-lg-mobile md:text-headline-lg mb-12 max-w-4xl">
+                    Absurdly Bold. <br/>Technically Superior.
+                </h2>
+<div class="grid md:grid-cols-2 gap-gutter text-left border-t-4 border-on-surface pt-12">
+<p class="font-body-md text-xl leading-relaxed">
+                        We believe the middle ground is a death sentence for brands. In an age of algorithmic aesthetics, we choose the outlier path. Our studio is built on the philosophy that a skating dinosaur mascot is more memorable than a generic blue logo.
+                    </p>
+<p class="font-body-md text-xl leading-relaxed">
+                        Professionalism doesn't mean boring. It means delivering a product so robust and technically advanced that it can afford to be irreverent. We play loud, we code hard, and we never compromise on the frame.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Section 7: Testimonials -->
+<section class="py-section-gap bg-secondary-container text-on-secondary-container border-y-8 border-on-secondary-container">
+<div class="marquee py-12">
+<div class="marquee-content flex gap-32">
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
+<!-- Duplicate for infinite loop -->
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"BARBARY redefined our entire digital existence" — XEROX LTD</p>
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"Technically flawless execution" — VOLT DATA</p>
+<p class="font-display-xl text-6xl md:text-8xl uppercase">"The boldest agency we have ever worked with" — GESTALT</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-frame-border py-section-gap bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+<h2 class="font-display-xl text-6xl md:text-9xl leading-none">READY FOR <br/>THE FRAME?</h2>
+<a class="bg-on-primary text-primary px-16 py-8 text-2xl font-display-xl uppercase brutal-border border-on-primary-fixed hover:bg-transparent hover:text-on-primary transition-all flex items-center gap-4 inline-flex" href="#site-footer">
+                    START PROJECT
+                    <span class="material-symbols-outlined text-4xl">north_east</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bottom-0 bg-background dark:bg-background border-t-8 border-primary dark:border-primary" id="site-footer">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-frame-border py-section-gap max-w-container-max mx-auto">
+<div class="mb-12 md:mb-0">
+<div class="font-display-xl text-headline-lg-mobile text-primary mb-4">BARBARY</div>
+<p class="font-label-mono text-secondary dark:text-secondary max-w-xs">Built for those who refuse to blend in. We are the studio of the bold.</p>
+</div>
+<div class="flex flex-col md:items-end gap-8">
+<div class="flex flex-wrap gap-8 font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.instagram.com/mazen_khaled1907/" target="_blank">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary-container transition-colors Hover: uppercase tracking-widest transition-all" href="https://www.linkedin.com/in/mazen-khaled-766520425/" target="_blank">LinkedIn</a>
+<a class="text-primary underline" href="#" target="_blank">Contact</a>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">
+                    © 2026 BARBARY STUDIO. ALL RIGHTS RESERVED.
+                </div>
+</div>
+</div>
+</footer>
+<script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(1.5)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+        });
+
+        // Simple observer for parallax-lite effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-12');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-12');
+            observer.observe(el);
+        });
+    </script>
+</body></html>
