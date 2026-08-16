@@ -191,20 +191,24 @@
 
 <!-- Section 1: Hero Shell & Navigation -->
 <header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b-4 border-primary dark:border-primary opacity-0 pointer-events-none" id="site-header">
-<div class="flex justify-between items-center w-full px-frame-border py-6 mx-auto">
+<div class="flex flex-wrap justify-between items-center w-full gap-x-4 gap-y-2 px-frame-border py-4 mx-auto">
 <div class="flex items-center gap-3">
-<span aria-hidden="true" class="block w-10 md:w-12 shrink-0" id="logo-slot"></span>
-<span class="font-display-xl text-headline-lg text-primary dark:text-primary tracking-tighter">BARBARY</span>
+<span aria-hidden="true" class="block w-9 md:w-10 shrink-0" id="logo-slot"></span>
+<span class="font-display-xl text-2xl md:text-3xl text-primary dark:text-primary tracking-tighter">BARBARY</span>
 </div>
-<nav class="hidden md:flex gap-12 font-label-mono text-label-mono uppercase">
-<a class="text-primary dark:text-primary font-bold border-b-2 border-primary translate-y-1 transition-transform" href="#">Work</a>
-<a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="services.html">Services</a>
-
-<a class="text-on-surface dark:text-on-surface hover:bg-primary hover:text-on-primary transition-colors duration-200" href="about.html">about</a>
-</nav>
-<a class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase hover:bg-on-primary hover:text-primary transition-all brutal-border border-primary inline-block" href="#site-footer">
+<div class="relative flex items-center gap-3">
+<a class="bg-primary text-on-primary px-5 py-2 text-xs font-label-mono uppercase hover:bg-on-primary hover:text-primary transition-all brutal-border border-primary inline-block" href="#site-footer">
                 Get in Touch
             </a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="flex items-center justify-center w-10 h-10 shrink-0 border-2 border-primary text-primary hover:bg-primary hover:text-on-primary transition-colors" id="nav-toggle" type="button">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden absolute right-0 top-full mt-2 w-48 flex flex-col bg-surface-container border-2 border-primary font-label-mono text-label-mono uppercase z-50" id="nav-dropdown">
+<a class="px-5 py-3 text-primary font-bold hover:bg-primary hover:text-on-primary transition-colors" href="#">Work</a>
+<a class="px-5 py-3 text-on-surface hover:bg-primary hover:text-on-primary transition-colors" href="services.html">Services</a>
+<a class="px-5 py-3 text-on-surface hover:bg-primary hover:text-on-primary transition-colors" href="#">about</a>
+</div>
+</div>
 </div>
 </header>
 <main>
@@ -220,7 +224,7 @@
 </div>
 </section>
 <!-- Section 1.5: Main hero content, revealed once the beanie has docked -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden frame-window m-6 mt-[124px] bg-surface-container-lowest">
+<section class="relative h-screen flex items-center justify-center overflow-hidden frame-window m-6 mt-[96px] bg-surface-container-lowest">
 <div class="z-10 text-center px-4">
 <h1 class="font-display-xl text-[10vw] md:text-display-xl leading-none text-primary mix-blend-difference mb-8">
                     CRAFTED FOR <br/>THE BOLD
@@ -402,6 +406,22 @@
         document.querySelectorAll('section > div').forEach(el => {
             el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-12');
             observer.observe(el);
+        });
+
+        // Nav dropdown
+        const navToggle = document.getElementById('nav-toggle');
+        const navDropdown = document.getElementById('nav-dropdown');
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !navDropdown.classList.contains('hidden');
+            navDropdown.classList.toggle('hidden');
+            navToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+        document.addEventListener('click', (e) => {
+            if (!navDropdown.classList.contains('hidden') && !navDropdown.contains(e.target) && !navToggle.contains(e.target)) {
+                navDropdown.classList.add('hidden');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     </script>
 <script>
